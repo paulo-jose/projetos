@@ -33,8 +33,8 @@ if (!empty($_GET['id'])) {
 <head>
     <title>Edição</title>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <meta content="width=device-width, initial-scale=0.8" name="viewport">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/casadocodigo.css">
     <link rel="stylesheet" type="text/css" href="../css/fontawesome.min.css">
 
@@ -44,19 +44,23 @@ if (!empty($_GET['id'])) {
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #0000CD;">
-            <ul class="nav navbar-nav">
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <?php if ($_SESSION['usuario']['funcao'] >= '14') :; ?>
-                    <li><a href="/acordos/view/pages/painel.php" style="color:white">Home</a></li>
-                    <li><a href="/acordos/view/pages/lista-usuario.php" style="color:white">Usuário</a></li>
-                    <li><a href="/acordos/admin/index.php" style="color:white">Acordos</a></li>
-                <?php else :; ?>
-                    <li><a href="/acordos/user/index.php" style="color:white">Acordos</a></li>
-                <?php endif; ?>
-                <li><a href="/acordos/view/pages/lista-acordo.php" style="color:white">Feedbacks</a></li>
-                <li><a href="/acordos/src/logout.php"" class=" login" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-            </ul>
+            <button type="button" data-target="#navbarNavAltMarkup" data-toggle="collapse" class="navbar-toggle collapsed">
+                <span style="color:white" class="fas fa-bars fa-2x"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/acordos/3459/index.php" style="color:white">Home</a></li>
+                    <?php if ($_SESSION['usuario']['funcao'] >= '14') :; ?>
+                        <li><a href="/acordos/view/pages/painel.php" style="color:white">Painel</a></li>
+                        <li><a href="/acordos/view/pages/lista-usuario.php" style="color:white">Usuário</a></li>
+                        <li><a href="/acordos/admin/index.php" style="color:white">Acordos</a></li>
+                    <?php else :; ?>
+                        <li><a href="/acordos/user/index.php" style="color:white">Acordos</a></li>
+                    <?php endif; ?>
+                    <li><a href="/acordos/view/pages/lista-acordo.php" style="color:white">Feedbacks</a></li>
+                    <li><a href="/acordos/src/logout.php"" class=" login" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
+            </div>
             </div>
         </nav>
     </header>
@@ -82,13 +86,15 @@ if (!empty($_GET['id'])) {
                                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mb-1">Feedback do acordo:<strong> <?php echo $acordo['titulo'] ?></strong></h5>
-                                            <small><p class="text-right">Data: <?php echo $feedback['data'] ?></p></small>
+                                            <small>
+                                                <p class="text-right">Data: <?php echo $feedback['data'] ?></p>
+                                            </small>
                                         </div>
                                         <div class="form-group">
                                             <p class="mb-1"><?php echo $feedback['descrição'] ?></p>
                                         </div>
                                         <div class="from-control">
-                                            <small>Criado por: <?php echo $feedback['usuario']?></small>
+                                            <small>Criado por: <?php echo $feedback['usuario'] ?></small>
                                         </div>
                                     </a>
                                 </div>
@@ -98,13 +104,9 @@ if (!empty($_GET['id'])) {
                     </form>
         </div>
     </main>
-    
-    <!-- <footer class="footer" style="background: #0000CD">
-        <div class="container text-center">
-            <small style="color: white"> Desenvolvido por: Paulo José de Sousa</br></small>
-            <small style="color: white">Matrícula: c138255-8</small>
-        </div>
-    </footer> -->
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 
 </html>

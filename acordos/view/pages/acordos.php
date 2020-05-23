@@ -14,10 +14,13 @@ $acordo['matricula'] = "";
 
 
 
-if (!empty($_GET['id']))
+if (!empty($_GET['id'])) {
     $acordo = $obj_acordo->buscarPorId($_GET['id']);
+} else {
 
-else {
+
+    $usuarios = $usuario->buscarPorAgencia($_SESSION['usuario']['lotacao'], $_SESSION['usuario']['matricula']);
+
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST['id'])) {
         $nomeArquivo;
@@ -39,7 +42,6 @@ else {
                 die();
             } else
                 header('Location: ../../admin/index.php?msg=false');
-
             die();
         } else {
             header('Location: ../../admin/index.php?msgUsuario=false');
@@ -48,6 +50,7 @@ else {
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['id'])) {
+
         if ($usuario->verificarMatricula($_POST['matricula'])) {
             if ($obj_acordo->atualizar($_POST['id'], $_POST['titulo'], $_POST['descrição'], $_POST['matricula'], "Pedente")) {
                 header('Location: ../../admin/index.php?msgEditar=true');
@@ -69,7 +72,7 @@ else {
 
 <head>
     <title>Edição</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="width=device-width, initial-scale=0.8" name="viewport">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/casadocodigo.css">
@@ -80,19 +83,23 @@ else {
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #0000CD;">
-            <ul class="nav navbar-nav">
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <?php if ($_SESSION['usuario']['funcao'] >= '14') :; ?>
-                    <li><a href="/acordos/view/pages/painel.php" style="color:white">Home</a></li>
-                    <li><a href="/acordos/view/pages/lista-usuario.php" style="color:white">Usuário</a></li>
-                    <li><a href="/acordos/admin/index.php" style="color:white">Acordos</a></li>
-                <?php else :; ?>
-                    <li><a href="/acordos/user/index.php" style="color:white">Acordos</a></li>
-                <?php endif; ?>
-                <li><a href="/acordos/view/pages/lista-acordo.php" style="color:white">Feedbacks</a></li>
-                <li><a href="/acordos/src/logout.php"" class=" login" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-            </ul>
+            <button type="button" data-target="#navbarNavAltMarkup" data-toggle="collapse" class="navbar-toggle collapsed">
+                <span style="color:white" class="fas fa-bars fa-2x"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/acordos/3459/index.php" style="color:white">Home</a></li>
+                    <?php if ($_SESSION['usuario']['funcao'] >= '14') :; ?>
+                        <li><a href="/acordos/view/pages/painel.php" style="color:white">Painel</a></li>
+                        <li><a href="/acordos/view/pages/lista-usuario.php" style="color:white">Usuário</a></li>
+                        <li><a href="/acordos/admin/index.php" style="color:white">Acordos</a></li>
+                    <?php else :; ?>
+                        <li><a href="/acordos/user/index.php" style="color:white">Acordos</a></li>
+                    <?php endif; ?>
+                    <li><a href="/acordos/view/pages/lista-acordo.php" style="color:white">Feedbacks</a></li>
+                    <li><a href="/acordos/src/logout.php"" class=" login" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
+            </div>
             </div>
         </nav>
     </header>
@@ -117,7 +124,16 @@ else {
 
                 <div class="form-group">
                     <label for="titulo">Matricula:</label>
-                    <input type="text" id="matricula" name="matricula" require value="<?php echo $acordo['matricula'] ?>" placeholder="c123456" class="form-control" disable="TRUE" required />
+                    <select class="form-control" id="matricula" name="matricula" required>
+                        <?php if (isset($usuarios) && count($usuarios) > 0) : ?>
+                            <option selected>Escolha o empregado</option>
+                            <?php foreach ($usuarios as $usuario) : ?>
+                                <option><?php echo $usuario['matricula'] ?></option>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <option selected value="0">Nenhum empregado cadastrado</option>
+                        <?php endif; ?>
+                    </select>
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
@@ -132,8 +148,8 @@ else {
         </div>
     </main>
 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
 
 </body>
 

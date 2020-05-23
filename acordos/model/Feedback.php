@@ -27,7 +27,7 @@ class Feedback
     {
         $idAcordo = (int) $id;
 
-        $stm = $this->mysql->prepare("SELECT feedback.id, feedback.descrição, acordo.titulo FROM feedback INNER JOIN acordo ON feedback.idAcordo = acordo.id WHERE feedback.id = ?");
+        $stm = $this->mysql->prepare("SELECT feedback.id, feedback.descrição, acordo.matricula, acordo.titulo FROM feedback INNER JOIN acordo ON feedback.idAcordo = acordo.id WHERE feedback.id = ?");
         $stm->bind_param('s', $id);
         if($stm->execute())
         {

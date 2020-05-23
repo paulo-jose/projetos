@@ -30,7 +30,7 @@ $acordos = $acordos->exibirPorAgencia($_SESSION['usuario']['lotacao']);
 <head>
 	<title>Acordos</title>
 	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="width=device-width, initial-scale=0.8" name="viewport">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../view/css/casadocodigo.css">
 	<link rel="stylesheet" type="text/css" href="../view/css/fontawesome.min.css">
@@ -44,19 +44,34 @@ $acordos = $acordos->exibirPorAgencia($_SESSION['usuario']['lotacao']);
 	<header>
 
 		<nav class="navbar float-right d-none d-lg-block" style="background-color: #0000CD;">
-
-			<ul class="nav navbar-nav d-none navbar-right">
-				<li><a href="/acordos/view/pages/painel.php" style="color:white">Home</a></li>
-				<li><a href="/acordos/view/pages/lista-usuario.php" style="color:white">Usuário</a></li>
-				<li><a href="index.php" style="color:white">Acordos</a></li>
-				<li><a href="/acordos/view/pages/lista-acordo.php" style="color:white">Feedbacks</a></li>
-				<li><a href="../src/logout.php"" class=" login" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Logaut</a></li>
-			</ul>
+			<button type="button" data-target="#navbarNavAltMarkup" data-toggle="collapse" class="navbar-toggle collapsed">
+				<span style="color:white" class="fas fa-bars fa-2x"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<ul class="nav navbar-nav d-none navbar-right">
+					<li><a href="/acordos/3459/index.php" style="color:white">Home</a></li>
+					<li><a href="/acordos/view/pages/painel.php" style="color:white">Painel</a></li>
+					<li><a href="/acordos/view/pages/lista-usuario.php" style="color:white">Usuário</a></li>
+					<li><a href="index.php" style="color:white">Acordos</a></li>
+					<li><a href="/acordos/view/pages/lista-acordo.php" style="color:white">Feedbacks</a></li>
+					<li><a href="../src/logout.php"" class=" login" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				</ul>
+			</div>
 		</nav>
 	</header>
 
 	<main class="conteudoPrincipal">
 		<div class="container">
+
+			<div class="nav navbar-nav navbar-right">
+				<!-- <a  hrf="../view/pages/acordos.php" class="btn btn-primary btnCircular btnPrincipal" >Cadastrar  <i class="fa fa-plus" size="2x"></i></a> -->
+			</div>
+			<a href="../view/pages/acordos.php" class="form-group nav navbar-nav navbar-right">
+				<div class="btn btn-primary">Cadastrar <i class="fa fa-plus fa-sm"></i></div>
+			</a>
+
+			<h1> Acordos </h1>
+
 
 			<!-- Bloco de validação de dados e mesagem para usuario  -->
 
@@ -99,16 +114,6 @@ $acordos = $acordos->exibirPorAgencia($_SESSION['usuario']['lotacao']);
 			<!-- Fim do bloco de validação de dados e mesagem para usuario  -->
 
 
-
-			<div class="nav navbar-nav navbar-right">
-				<!-- <a  hrf="../view/pages/acordos.php" class="btn btn-primary btnCircular btnPrincipal" >Cadastrar  <i class="fa fa-plus" size="2x"></i></a> -->
-			</div>
-			<a href="../view/pages/acordos.php" class="form-group nav navbar-nav navbar-right">
-				<div class="btn btn-primary">Cadastrar <i class="fa fa-plus fa-sm"></i></div>
-			</a>
-
-			<h1> Acordos </h1>
-
 			<?php if (isset($_GET['msgUsuario'])) : ?>
 				<div class="alert alert-danger" role="alert">
 					Usuario não localizado por favor cadastra o usuário antes de inserir/editar o acordo.
@@ -120,40 +125,38 @@ $acordos = $acordos->exibirPorAgencia($_SESSION['usuario']['lotacao']);
 					Nenhum Acordo localizado ...
 				</div>
 			<?php else : ?>
-				<table id="acordo" class="table table-striped table-dark">
-					<thead class="thead-dark">
-						<tr>
-							<td>ID</td>
-							<td>Acordos</td>
-							<td>Matricula</td>
-							<td>Status</td>
-							<td>Editar</td>
-							<td>Remover</td>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach ($acordos as $acordo) : ?>
+				<div class="table-responsive">
+					<table id="acordo" class="table table-striped table-dark">
+						<thead class="thead-dark">
 							<tr>
-								<td><?php echo $acordo['id']; ?></td>
-								<td><?php echo $acordo['titulo']; ?></td>
-								<td><?php echo $acordo['matricula']; ?></td>
-								<td><?php echo $acordo['status']; ?></td>
-								<td><a href="../view/pages/acordos.php?id=<?php echo $acordo['id']; ?>">Editar</a></td>
-								<td><a href="index.php?id=<?php echo $acordo['id']; ?>">Remover</a></td>
+								<td>ID</td>
+								<td>Acordos</td>
+								<td>Matricula</td>
+								<td>Status</td>
+								<td>Editar</td>
+								<td>Remover</td>
 							</tr>
-						<?php endforeach; ?>
-					</tbody>
-				<?php endif; ?>
-				</table>
+						</thead>
+						<tbody>
+							<?php foreach ($acordos as $acordo) : ?>
+								<tr>
+									<td><?php echo $acordo['id']; ?></td>
+									<td><?php echo $acordo['titulo']; ?></td>
+									<td><?php echo $acordo['matricula']; ?></td>
+									<td><?php echo $acordo['status']; ?></td>
+									<td><a href="../view/pages/acordos.php?id=<?php echo $acordo['id']; ?>"><button type="button" class="btn btn-primary">Editar</button></a></td>
+									<td><a href="index.php?id=<?php echo $acordo['id']; ?>"><button type="button" class="btn btn-danger">Remover</button></a></td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					<?php endif; ?>
+					</table>
+				</div>
 		</div>
 	</main>
 
-	<!-- <footer class="footer" style="background: #0000CD">
-        <div class="container text-center">
-            <small style="color: white"> Desenvolvido por: Paulo José de Sousa</br></small>
-            <small style="color: white">Matrícula: c138255-8</small>
-        </div>
-    </footer> -->
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
 
 </body>
 

@@ -28,6 +28,7 @@ session_start();
   <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
   <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="stylesheet" type="text/css" href="../view/css/fontawesome.min.css">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -38,45 +39,44 @@ session_start();
 <body>
 
   <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-none d-lg-block">
+  <section id="topbar" class="d-none d-lg-block"  style="background-color: #0000CD">
     <div class="container clearfix">
       <div class="contact-info float-left">
-        <i class="icofont-envelope"></i><a href="mailto:ag3459@caixa.com.br">ag3459@caixa.com.br</a>
-        <i class="icofont-phone"></i> (63) 3222-3300
+        <i class="icofont-envelope" style="color: white"></i><a style="color: white" href="mailto:ag3459@caixa.gov.br">ag3459@caixa.gov.br</a>
       </div>
     </div>
   </section>
 
   <!-- ======= Header ======= -->
-  <header id="header">
+  <header id="header" style="background-color: #0000CD">
     <div class="container">
 
-      <div class="logo float-left">
-        <h1 class="text-light"><a href="index.html"><span>Agência Serra do Carmo</span></a></h1>
+      <div class="logo float-left" >
+        <h1 class="text-light" ><span>Agência Serra do Carmo</span></h1>
       </div>
 
-      <nav class="nav-menu float-right d-none d-lg-block">
+      <nav class="nav-menu float-right d-none d-lg-block" style="color: white" >
         <ul>
          
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Serviços
             </a>
             <?php if ($_SESSION['usuario']['funcao'] >= '14') :; ?>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/acordos/view/pages/painel.php">Acordos</a>
+                <a class="dropdown-item" style="color:black" href="/acordos/view/pages/painel.php">Sistema de Acordos</a>
               </div>
             <?php else : ?>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/acordos/user/index.php">Acordos</a>
+                <a class="dropdown-item"  style="color: black" href="/acordos/user/index.php" >Sistema de Acordos</a>
               </div>
             <?php endif; ?>
           </li>
-          <li><a href="#portfolio">Álbum</a></li>
-          <li><a href="#team">Equipe</a></li>
-          <li><a href="#aniversariantes">Aniversariantes</a></li>
-          <li><a href="#contact">Contatos</a></li>
-          <li><a href="/acordos/src/logout.php">Logout</a></li>
+          <li><a href="#portfolio" style="color: white">Álbum</a></li>
+          <li><a href="#team" style="color: white">Equipe</a></li>
+          <li><a href="#aniversariantes" style="color: white">Aniversariantes</a></li>
+          <li><a href="#contact" style="color: white">Contatos</a></li>
+          <li><a href="/acordos/src/logout.php"" class="login" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -391,11 +391,44 @@ session_start();
             </div>
           </div>
 
+
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <div class="pic"><img src="assets/img/team/maria.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Maria José</h4>
+                <span>Gerente de Varejo</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <div class="pic"><img src="assets/img/team/grazielle.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Grazielle</h4>
+                <span>Tesoureira</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <div class="pic"><img src="assets/img/team/alex.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Alex</h4>
+                <span>Assistente de Agência</span>
+              </div>
+            </div>
+          </div>
+
           <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="member">
               <div class="pic"><img src="assets/img/team/paulo.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Paulo</h4>
+                <h4>Paulo José</h4>
                 <span>Caixa-PV</span>
               </div>
             </div>
@@ -435,10 +468,21 @@ session_start();
 
           <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <div class="pic"><img src="assets/img/team/grazielle.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="assets/img/team/cleci.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Grazielle</h4>
-                <span>Tesoureira</span>
+                <h4>Cleci</h4>
+                <span>TBN</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <div class="pic"><img src="assets/img/team/ze.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Zé Messias</h4>
+                <span>TBN</span>
               </div>
             </div>
           </div>
@@ -521,14 +565,8 @@ session_start();
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
+  <footer id="footer" style="background-color: #0000CD">
 
-        </div>
-      </div>
-    </div>
 
     <div class="container">
       <div class="copyright">
@@ -540,8 +578,6 @@ session_start();
       </div>
     </div>
   </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/jquery/jquery.min.js"></script>

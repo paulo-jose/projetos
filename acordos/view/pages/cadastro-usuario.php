@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>Cadastro</title>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="width=device-width, initial-scale=0.8" name="viewport">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/casadocodigo.css">
     <link rel="stylesheet" type="text/css" href="../css/fontawesome.min.css">
@@ -67,17 +67,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group">
                     <label for="titulo">Matricula:</label>
-                    <input type="text" id="matricula" name="matricula" require value="" placeholder="c123456" class="form-control" required />
+                    <input type="text" id="matricula" name="matricula" maxlength="7" value="" placeholder="c123456" class="form-control" required />
                 </div>
 
                 <div class="form-group">
                     <label for="pwd">Senha:</label>
-                    <input type="password" id="pwd" name="cpf" require value="" class="form-control" minlength="6" required />
+                    <input type="password" id="cpf" name="cpf" require value="" class="form-control" minlength="6" maxlength="10" required />
                 </div>
 
                 <div class="form-group">
                     <label>Agência:</label>
-                    <select class="form-control" name="lotacao" size=5 required>
+                    <select class="form-control custom-select" name="lotacao" size=5 required>
                         <option selected>Escolha sua Agência</option>
 
                         <option value="610">610 - ARAGUAINA</option>
@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group">
                     <label>Função:</label>
-                    <select class="form-control" name="funcao" size=5 required>
+                    <select class="form-control custom-select" name="funcao" size=5 required>
                         <option selected>Escolha sua Função</option>
                         <option value="1">ASSIST ATEND E NEGOCIOS</option>
 
@@ -198,6 +198,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-</body>
+   
+    <script>
+        $("#matricula").on("input", function(){
+             $(this).val($(this).val().toLowerCase());
+        });
+    </script>
 
+</body>
 </html>

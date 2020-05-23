@@ -31,7 +31,7 @@ for ($i = 0; $i < 10; $i++) {
 <head>
     <title>Painel</title>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="width=device-width, initial-scale=0.8" name="viewport">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/casadocodigo.css">
     <link rel="stylesheet" type="text/css" href="../css/fontawesome.min.css">
@@ -44,12 +44,17 @@ for ($i = 0; $i < 10; $i++) {
 
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #0000CD;">
-            <ul class="nav navbar-nav">
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light float-right d-none d-lg-light " style="background-color: #0000CD;">
+        
+        <button type="button" data-target="#navbarNavAltMarkup" data-toggle="collapse" class="navbar-toggle collapsed">
+                <span style="color:white" class="fas fa-bars fa-2x"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="nav navbar-nav navbar-right">
+            <li><a href="/acordos/3459/index.php" style="color:white">Home</a></li>
                 <?php if ($_SESSION['usuario']['funcao'] >= 14) :; ?>
-                    <li><a href="/acordos/view/pages/painel.php" style="color:white">Home</a></li>
+                    <li><a href="/acordos/view/pages/painel.php" style="color:white">Painel</a></li>
                     <li><a href="/acordos/view/pages/lista-usuario.php" style="color:white">Usuário</a></li>
                     <li><a href="/acordos/admin/index.php" style="color:white">Acordos</a></li>
                 <?php else :; ?>
@@ -59,6 +64,7 @@ for ($i = 0; $i < 10; $i++) {
                 <li><a href="/acordos/src/logout.php"" class=" login" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
             </ul>
             </div>
+        </div>
         </nav>
     </header>
 
@@ -85,10 +91,10 @@ for ($i = 0; $i < 10; $i++) {
                 </form>
             </div>
             <ul class="list-group">
-                <li class="list-group-item active">Últimos Acordos</li>
+                <li class="list-group-item active">Acordos</li>
                 <?php if (!empty($feedbacks)) : ?>
                     <?php foreach ($feedbacks as $feedback) : ?>
-                        <a href="listagem.php?idAcordo=<?php echo $feedback['idAcordo']?>" class="list-group-item list-group-item-action"><?php echo $feedback['titulo'] ?></a>
+                        <a href="listagem.php?idAcordo=<?php echo $feedback['idAcordo']?>" class="list-group-item list-group-item-action"><?php echo $feedback['titulo'] ?><div class="text-right"> <?php echo $feedback['usuario'] ?></div></a>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <a href="" class="list-group-item list-group-item-action">Nenhum Acordo localizado.</a>
@@ -97,10 +103,10 @@ for ($i = 0; $i < 10; $i++) {
 
 
             <ul class="list-group">
-                <li class="list-group-item active">Feedbacks do Dia</li>
+                <li class="list-group-item active">Feedbacks</li>
                 <?php if (!empty($feedbacks)) : ?>
                     <?php foreach ($feedbacks as $feedback) : ?>
-                        <a href="listagem.php?id=<?php echo $feedback['id']?>" class="list-group-item list-group-item-action"><?php echo $feedback['descrição'] ?></a>
+                        <a href="listagem.php?id=<?php echo $feedback['id']?>" class="list-group-item list-group-item-action"><?php echo $feedback['descrição'] ?> <div class="text-right"> <?php echo $feedback['usuario'] ?></div></a>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <a href="" class="list-group-item list-group-item-action">Nenhum feedback localizado.</a>

@@ -2,7 +2,7 @@
 
 $servidor = "localhost";
 $usuario = "root";
-$senha = "pjs_182";
+$senha = "****";
 $bd = "sistemadeacordos";
 
 // $servidor = "sql302.epizy.com";
